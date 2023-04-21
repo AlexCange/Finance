@@ -1,0 +1,332 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ------------------------------------------------- */
+
+:root {
+    --text: #C15143;
+    --BG : #ECDBAD;
+    --LightBox: #F1FACF;
+    --DarkBox: #4B402A;
+    --GraphIncome : #CCDBB2;
+    --GraphSaving : #B8F2E0;
+    --GraphExpenses: #E8B6B0;
+    --form-control-color: rebeccapurple;
+}
+
+body, html {
+    background-color: var(--BG);
+    color: var(--text);
+    font: 20px Raleway;
+}
+
+/* ------------------------HEADER------------------------- */
+
+#MenuBtn {
+    background-color: var(--BG);
+    color: var(--text);
+    border: none;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+}
+
+header #MenuUL {
+    background-color: var(--text);
+    color: var(--BG);
+    font-weight: 100;
+    margin-top: 58px;
+    position: sticky;
+}
+#MenuAddBtn {
+    background-color: var(--text);
+    color: var(--BG);
+    border: none;
+    font: 1em Raleway;
+    padding: 0;
+    vertical-align: bottom;
+    font-weight: 100;
+}
+#MenuAddBtn span {
+    font-weight: 100;
+    margin: 0px 0px 0px 10px;
+    vertical-align: bottom;
+
+}
+#MenuAddUL {
+    padding: 10px 20px;
+}
+#MenuAddUL li {
+    padding: 5px !important;
+}
+#MenuUL li {
+    padding: 10px;
+}
+
+
+/* ------------------------MAIN------------------------- */
+hr {
+    border: .05em solid var(--text);
+    opacity: .5;
+    width: 85%;
+    margin: 20px auto;
+}
+
+#BackArrowP {
+    padding: 10px 0 0 10px;
+    font-weight: 100;
+    font-size: .8rem;
+    color: var(--DarkBox);
+}
+
+#BackArrowP span {
+    padding: 10px 0 0 10px;
+    font-weight: 100;
+    font-size: 1rem;
+    vertical-align: bottom;
+}
+
+/* ----HOME PAGE---- */
+#Balance {
+    max-width: 100%;
+    margin: 30px auto;
+}
+
+#BalanceDiv {
+    margin: 30px auto;
+    font-weight: 200;
+    text-align: center;
+}
+
+#ChartBalancDetails {
+    width: 80%;
+    max-width: 80%;
+    margin: 20px auto;
+}
+
+/* ----SUMMARY PAGE---- */
+
+#Summary {
+    margin-top: 50px;
+    font-weight: 100;
+    font-size: .8rem;
+}
+#MonthlyLine {
+    max-width: 80%;
+    margin: 30px auto;
+}
+
+/* ----ADD PAGES---- */
+
+#AddExpenseDiv {
+    margin-top: 60px;
+}
+
+#EForm, 
+#IForm, 
+#SForm {
+    padding: 7%;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+#EForm input, 
+#IForm input, 
+#SForm input {
+    background-color: var(--text);
+    color: var(--BG);
+    border: none; 
+    border-radius: 15px;
+    padding: 5px;
+    margin: 10px;
+    font-family: Raleway;
+    font-weight: 100;
+}
+
+#EForm input::placeholder, 
+#IForm input::placeholder, 
+#SForm input::placeholder{
+    color:var(--BG);
+    font: .7rem Raleway;
+    font-weight: 100;
+    font-style: italic;
+}
+#EForm label, 
+#IForm label, 
+#SForm label {
+    font-weight: 100;
+    margin: 10px;
+}
+
+#EForm select, 
+#IForm select, 
+#SForm select {
+    background-color: var(--text);
+    color: var(--BG);
+    border: none; 
+    border-radius: 15px;
+    padding: 5px;
+    margin: 10px;
+    font-family: Raleway;
+    font-weight: 100;
+}
+
+#EForm button , 
+#IForm button, 
+#SForm button{
+    background-color: var(--text);
+    color: var(--BG);
+    grid-column: 1/3;
+    width: 70%; 
+    justify-self: center;
+    padding: 10px;
+    margin: 30px auto;
+    font: .7rem Raleway;
+    font-weight: 100;
+    border: none;
+    border-radius: 35px;
+}
+#SForm {
+    margin-top: 45px;
+}
+
+label[for=SExpenseCBY], label[for=SExpenseCBN]{
+    text-align: center;
+}
+#LabelSCB {
+    grid-column: 1/3;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.05em solid var(--text) !important;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+    background-color: var(--BG) !important;
+    display: grid;
+    place-content: center;
+}
+input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--text);
+}
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+input[type="radio"]:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+}
+
+/* ----HISTORY PAGE---- */
+#History {
+    margin-top: 60px;
+    padding: 15px;
+}
+
+#History table {
+    font: .8rem Raleway;
+    width: 100%;
+    display: block;
+    max-height: 200px;
+    overflow-y: scroll;
+    margin: 10px auto 20px;
+}
+
+#History td {
+    padding: 5px;
+}
+
+#History tr {
+    display: grid;
+    grid-template-columns: 30% 45% 20%;
+    border: 1px solid var(--BG);
+    box-shadow: 0 0 2px var(--text);
+}
+
+#History input {
+    background-color: var(--LightBox);
+    color: var(--text);
+    font: .7rem Raleway;
+    border: none;
+    border-radius: 15px;
+    padding: 3px 10px;
+    margin: 3px auto;
+    outline: none;
+}
+
+#History input::placeholder {
+    color: var(--text);
+    font-style: italic;
+}
+
+#MonthlyLineSelect {
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--text);
+    color: var(--BG);
+    font: .7rem Raleway;
+    border: none; 
+    border-radius: 50px;
+    position: absolute;
+    right:0;
+    top: 25px;
+}
