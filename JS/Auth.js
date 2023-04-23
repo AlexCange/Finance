@@ -8,16 +8,23 @@ const ErrorMsg = document.getElementById('ErrorMsg')
 const Header = document.querySelector('header')
 const Main = document.querySelector('main')
 
+const Loading = document.getElementById('Loading')
+
 setTimeout(() => {
     if (auth.currentUser) {
-    LogInPage.style.display = 'none'
-    Header.style.display = 'block'
-    Main.style.display = 'block'
-    LoadAll()
-}
-if (!auth.currentUser) {
-    LogInPage.style.display = 'block'
-}
+        LogInPage.style.display = 'none'
+        Loading.style.display = "flex"
+        setTimeout(() => {
+            Loading.style.display = "none"
+            Header.style.display = 'block'
+            Main.style.display = 'block'
+        }, 4000)
+        LoadAll()
+    }
+    if (!auth.currentUser) {
+        Loading.style.display = "none"
+        LogInPage.style.display = 'block'
+    }
 },1000)
 
 LogInBtn.addEventListener('click', (e) => {
@@ -25,8 +32,12 @@ LogInBtn.addEventListener('click', (e) => {
     auth.signInWithEmailAndPassword(Email.value, Password.value).then(() => {
         setTimeout(() => {
         LogInPage.style.display = 'none'
-        Header.style.display = 'block'
-        Main.style.display = 'block'
+        Loading.style.display = "flex"
+        setTimeout(() => {
+            Loading.style.display = "none"
+            Header.style.display = 'block'
+            Main.style.display = 'block'
+        }, 4000)
         LoadAll()
     }, 2000)
     }).catch((error) => {
@@ -43,8 +54,12 @@ RegisterBtn.addEventListener('click', (e) => {
     auth.createUserWithEmailAndPassword(Email.value, Password.value).then(() => {
         setTimeout(() => {
         LogInPage.style.display = 'none'
-        Header.style.display = 'block'
-        Main.style.display = 'block'
+        Loading.style.display = "flex"
+        setTimeout(() => {
+            Loading.style.display = "none"
+            Header.style.display = 'block'
+            Main.style.display = 'block'
+        }, 4000)
         LoadAll()
     }, 2000)
     }).catch((error) => {
