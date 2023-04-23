@@ -1,4 +1,5 @@
 const db = firebase.firestore()
+const auth = firebase.auth();
 
 let unsubscribe
 let Expenses = []
@@ -7,18 +8,20 @@ let Savings = []
 let Data = [Expenses, Incomes, Savings]
 
 // LOAD DATA
-const getData = () => {
+function getData() {
     unsubscribe = db
     .collection('Finances')
+    .where('ownerId', '==', auth.currentUser.uid)
     .onSnapshot((snapshot) => {
         docsToData(snapshot.docs)
     })
 }
 
-const docsToData = (docs) => {
+function docsToData(docs) {
     docs.map((doc) => {
         if (doc.data().FinanceType === "Expense") {
             Expenses.push({
+                ownerId: doc.data().ownerId,
                 FinanceType: doc.data().FinanceType,
                 Date: doc.data().Date,
                 Type: doc.data().Type,
@@ -28,6 +31,7 @@ const docsToData = (docs) => {
         }
         if (doc.data().FinanceType === "Income") {
             Incomes.push({
+                ownerId: doc.data().ownerId,
                 FinanceType: doc.data().FinanceType,
                 Date: doc.data().Date,
                 Type: doc.data().Type,
@@ -37,6 +41,7 @@ const docsToData = (docs) => {
         }
         if (doc.data().FinanceType === "Saving") {
             Savings.push({
+                ownerId: doc.data().ownerId,
                 FinanceType: doc.data().FinanceType,
                 Date: doc.data().Date,
                 Type: doc.data().Type,
@@ -46,7 +51,6 @@ const docsToData = (docs) => {
         }
     })
 }
-getData()
 function ReturnExpenses() {return Expenses}
 function ReturnIncomes() {return Incomes}
 function ReturnSavings() {return Savings}
@@ -249,9 +253,16 @@ function FinalExpenseDetailsAmount() {
     return FinalsExpensesAmounts;
 }
 
-setTimeout(() => {
-    GetExpense()
-    GetIncomes()
-    GetSavings()
-    FinalExpenseDetailsAmount()
-},2000)
+function LoadAll() {
+    getData()
+    setTimeout(() => {
+        GetExpense()
+        GetIncomes()
+        GetSavings()
+        FinalExpenseDetailsAmount()
+    }, 1000)
+    setTimeout(() => {
+        displayWelcomeDiv()
+        LoadCharts()
+    }, 2000)
+}

@@ -16,7 +16,7 @@ const MenuAddBtn = document.getElementById('MenuAddBtn')
 // BALANCE DIV
 const WelcomeDiv = document.getElementById('WelcomeDiv')
 const WelcomeSavings = document.getElementById('WelcomeSavings')
-const displayWelcomeDiv = () => {
+function displayWelcomeDiv() {
     let SavingsTotal = 0
     Savings.forEach(saving => {SavingsTotal += saving.Amount})
 
@@ -38,10 +38,6 @@ const displayWelcomeDiv = () => {
     WelcomeSavings.appendChild(document.createElement('hr'))
     WelcomeSavings.appendChild(H1Saves)
 }
-
-setTimeout(() => {
-    displayWelcomeDiv()
-},1000)
 
 const SummaryDiv = document.getElementById('Summary')
 const BalanceDiv = document.getElementById('BalanceDiv')
@@ -132,6 +128,7 @@ AddExpenseBtn.addEventListener('click', (e) => {
     let EAmount = parseFloat(document.getElementById('EAmount').value)
     let EFinancialType = 'Expense'
     let DataFormDict = {
+        ownerId: auth.currentUser.uid,
         FinanceType: EFinancialType,
         Date: EDate,
         Type: EType,
@@ -156,6 +153,7 @@ AddIncomeBtn.addEventListener('click', (e) => {
     let IAmount = parseFloat(document.getElementById('IAmount').value)
     let IFinancialType = 'Income'
     let DataFormDict = {
+        ownerId: auth.currentUser.uid,
         FinanceType: IFinancialType,
         Date: IDate,
         Type: IType,
@@ -178,6 +176,7 @@ AddSavingBtn.addEventListener('click', (e) => {
     let SAmount = parseFloat(document.getElementById('SAmount').value)
     let SFinancialType = 'Saving'
     let DataFormDict = {
+        ownerId: auth.currentUser.uid,
         FinanceType: SFinancialType,
         Date: SDate,
         Type: 'Saving',
@@ -189,6 +188,7 @@ AddSavingBtn.addEventListener('click', (e) => {
     let ResultCB = document.querySelector('input[name="SExpenseCB"]:checked').value;
     if (ResultCB === 'Yes') {
         let TransferExpense = {
+        ownerId: auth.currentUser.uid,
         FinanceType: 'Expense',
         Date: SDate,
         Type: 'TransferSaving',
@@ -197,7 +197,6 @@ AddSavingBtn.addEventListener('click', (e) => {
         }
         AddDataDB(TransferExpense)
     }
-    
     setTimeout(() => {
         HomeLoadPage()
         SForm.reset()
@@ -388,3 +387,4 @@ MonthlyLineSelect.onchange = () => {
     MonthlyTableIInput()
     MonthlyTableEInput()
 }
+

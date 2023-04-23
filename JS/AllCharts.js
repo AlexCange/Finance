@@ -1,4 +1,4 @@
-setTimeout(() => {
+function LoadDataForCharts() {
     // Get Data
     const Expenses = ReturnExpenses()
     const Incomes = ReturnIncomes()
@@ -9,15 +9,14 @@ setTimeout(() => {
     Expenses.forEach(expense => {ExpensesTotal += parseFloat(expense.Amount).toFixed(2)})
     let IncomesTotal = 0
     Incomes.forEach(income => {IncomesTotal += parseFloat(income.Amount).toFixed(2)})
-
-}, 1000)
+}
 
 // ---------------- CREATE BALANCE -------------------
 
 Chart.register(ChartDataLabels);
 
 const ChartBalanceAll = document.getElementById('ChartBalanceAll').getContext("2d")
-setTimeout(() => {//Balance Chart
+function BalanceChart() {//Balance Chart
     const AmountE = GetExpense()
     const AmountI = GetIncomes()
     const d = new Date().getMonth();
@@ -29,7 +28,7 @@ setTimeout(() => {//Balance Chart
         datasets: [{
             data:[parseFloat(AmountE[d]).toFixed(2), parseFloat(AmountI[d]).toFixed(2)],
             borderColor: '#ECDBAD', 
-            backgroundColor: ['#E8B6B0', '#CCDBB2']
+            backgroundColor: ['#BD8B5F', '#43705F']
         }]
     },
     options: {
@@ -64,7 +63,7 @@ setTimeout(() => {//Balance Chart
             },
             datalabels: {
                 display: true,
-                color: '#C15143',
+                color: 'white',
                 font: {
                     family: 'Raleway',
                     size: 10,
@@ -75,10 +74,10 @@ setTimeout(() => {//Balance Chart
         
         responsive: true,
     }
-})},1000)
+})}
+
 const ChartBalancDetails = document.getElementById('ChartBalancDetails').getContext("2d")
-setTimeout(() => {
-    t = Expenses[1].Date.substr(5,2)
+function DetailedMonthlyChart() {
     d = new Date().getMonth() + 1
     ListDict = []
     Expenses.forEach(expense => {
@@ -150,7 +149,7 @@ setTimeout(() => {
             }
         }
     })
-},2000)
+}
 
 // ------------------ DETAILS MONTHLY SUMMARY ---------------------
 
@@ -158,7 +157,7 @@ let MonthlyLineChart = document.getElementById('MonthlyLineChart')
 const Month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 
-setTimeout(() => {// Get Monthly Chart
+function MonthlyChart() {// Get Monthly Chart
     const listAmountE = GetExpense()
     const listAmountI = GetIncomes()
     const listAmountS = GetSavings()
@@ -169,8 +168,8 @@ setTimeout(() => {// Get Monthly Chart
         datasets: [{
             label:'Expenses',
             data: listAmountE, 
-            borderColor: '#C15143',
-            backgroundColor: '#C15143',
+            borderColor: '#BD8B5F',
+            backgroundColor: '#BD8B5F',
             fill: false,
             pointStyle: 'circle',
             pointRadius: 2,
@@ -179,18 +178,18 @@ setTimeout(() => {// Get Monthly Chart
         }, {
             label:'Incomes',
             data: listAmountI, 
-            borderColor: '#8CAB5E',
-            backgroundColor: '#8CAB5E',
+            borderColor: '#43705F',
+            backgroundColor: '#43705F',
             fill: false,
             pointStyle: 'circle',
             pointRadius: 2,
             cubicInterpolationMode: 'monotone',
-            yAxisID: 'y1'
+            yAxisID: 'y'
         }, {
             label:'Savings',
             data: listAmountS, 
-            borderColor: '#4FAB9B',
-            backgroundColor: '#4FAB9B',
+            borderColor: '#435070',
+            backgroundColor: '#435070',
             fill: false,
             pointStyle: 'circle',
             pointRadius: 2,
@@ -250,7 +249,7 @@ setTimeout(() => {// Get Monthly Chart
         }
     }
 })
-},2000)
+}
 
 
 
@@ -258,7 +257,7 @@ setTimeout(() => {// Get Monthly Chart
 
 const MonthlyLineDetails = document.getElementById('MonthlyLineDetails')
 const Palette = ['#000F08','#F4FFF8','#8BAAAD','#C0D5D3','#B7CFB8','#0E2320','#354040','#1C3738', '#4D4847', '#414444','#9BA29E','#A6BCA7','#97AB98','#899B8A' ]
-setTimeout(() => {
+function DetailedExpensesChart() {
     const TypesDetails = GetTypes()
     const AmountDetails = FinalExpenseDetailsAmount()
     datasets = []
@@ -322,5 +321,15 @@ setTimeout(() => {
             }
         }
     })
-    
-}, 2000)
+}
+
+
+function LoadCharts() {
+    LoadDataForCharts()
+    setTimeout(() => {
+        BalanceChart()
+        DetailedMonthlyChart()
+        DetailedExpensesChart()
+        MonthlyChart()
+    }, 2000)
+}

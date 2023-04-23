@@ -65,6 +65,45 @@ body, html {
     color: var(--text);
     font: 20px Raleway;
 }
+/* ------------------------LogInPage------------------------- */
+#LogInPage {
+    height: 400px;
+    padding: 15px;
+    margin: auto;
+}
+
+#LogRegForm {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 80%;
+    margin: 60px auto;
+}
+
+#LogRegForm button{
+    margin: 30px auto;
+    width: 100px;
+    padding: 15px ;
+    background-color: var(--text);
+    color: var(--BG);
+    font: .7rem Raleway;
+    border: none;
+    border-radius: 15px;
+}
+
+#LogRegForm input {
+    margin: 10px;
+    padding: 5px;
+    background-color: var(--text);
+    color:var(--BG);
+    border: none;
+    border-radius: 15px;
+    outline: none;
+}
+
+#LogRegForm label {
+    margin: 10px;
+}
+
 
 /* ------------------------HEADER------------------------- */
 

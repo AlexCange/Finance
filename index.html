@@ -48,41 +48,54 @@
     <link rel="apple-touch-startup-image" href="icons/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
   </head>
   <body>
-    <header>
-      <nav id="MenuDiv">
-        <button id="MenuBtn" onclick="ToggleDisplayDiv(MenuUL)"><span class="material-symbols-outlined">menu</span></button>
-        <div id="MenuUL" style="display: none;">
-          <ul>
-            <a onclick="HomeLoadPage()">
-              <li>HOME</li>
-            </a>
-            <a onclick="SummaryLoadPage()">
-              <li>MONTHLY SUMMARY</li>
-            </a>
-            <a onclick="HistoryLoadPage()">
-              <li>HISTORY</li>
-            </a>
-            <button id="MenuAddBtn" onclick="ToggleDisplayDiv(MenuAddUL)">
-              <li>ADD <span class="material-symbols-outlined">arrow_forward_ios</span></li>
-            </button>
-            <div id="MenuAddUL" style="display: none;">
-              <ul>
-                <a onclick="AddExpenseLoadPage()">
-                  <li>EXPENSE</li>
+    <div id="LogInPage" style="display: none;">
+        <form id="LogRegForm" autocomplete="off">
+            <label for="Email">Email</label>
+            <input type="email" name="Email" id="Email" required>
+            <label for="Password">Password</label>
+            <input type="password" name="Password" id="Password" required>
+            <button id="LogInBtn">LogIn</button>
+            <button id="RegisterBtn">Register</button>
+        </form>
+        <div id="ErrorMsg"></div>
+    </div>
+    <header style="display: none;">
+        <nav id="MenuDiv">
+            <button id="MenuBtn" onclick="ToggleDisplayDiv(MenuUL)"><span class="material-symbols-outlined">menu</span></button>
+            <div id="MenuUL" style="display: none;">
+            <ul>
+                <a onclick="HomeLoadPage()">
+                <li>HOME</li>
                 </a>
-                <a onclick="AddIcomeLoadPage()">
-                  <li>INCOMES</li>
+                <a onclick="SummaryLoadPage()">
+                <li>MONTHLY SUMMARY</li>
                 </a>
-                <a onclick="AddSavingLoadPage()">
-                  <li>SAVINGS</li>
+                <a onclick="HistoryLoadPage()">
+                <li>HISTORY</li>
                 </a>
-              </ul>
+                <button id="MenuAddBtn" onclick="ToggleDisplayDiv(MenuAddUL)">
+                <li>ADD <span class="material-symbols-outlined">arrow_forward_ios</span></li>
+                </button>
+                <div id="MenuAddUL" style="display: none;">
+                <ul>
+                    <a onclick="AddExpenseLoadPage()">
+                    <li>EXPENSE</li>
+                    </a>
+                    <a onclick="AddIcomeLoadPage()">
+                    <li>INCOMES</li>
+                    </a>
+                    <a onclick="AddSavingLoadPage()">
+                    <li>SAVINGS</li>
+                    </a>
+                </ul>
+                </div>
+                <a onclick="LogOut()"><li><span class="material-symbols-outlined">logout</span>
+                    LOG OUT</li></a>
+            </ul>
             </div>
-          </ul>
-        </div>
-      </nav>
+        </nav>
     </header>
-    <main>
+    <main style="display: none;">
       <div id="BalanceDiv">
         <div id="WelcomeDiv">
         </div>
@@ -211,6 +224,7 @@
       firebase.initializeApp(firebaseConfig);
     </script>
     <script src="JS/Database.js"></script>
+    <script src="JS/Auth.js"></script>
     <script src="JS/AllCharts.js"></script>
     <script src="JS/script.js"></script>
   </body>
